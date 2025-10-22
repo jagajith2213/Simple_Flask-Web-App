@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Add Movement{% endblock %}
+{% block content %}
+<h1>Add Product Movement</h1>
+<form method="POST">
+    From Location: <select name="from_location">
+        <option value="">None</option>
+        {% for location in locations %}
+        <option value="{{ location.location_id }}">{{ location.name }}</option>
+        {% endfor %}
+    </select><br>
+    To Location: <select name="to_location">
+        <option value="">None</option>
+        {% for location in locations %}
+        <option value="{{ location.location_id }}">{{ location.name }}</option>
+        {% endfor %}
+    </select><br>
+    Product: <select name="product_id">
+        {% for product in products %}
+        <option value="{{ product.product_id }}">{{ product.name }}</option>
+        {% endfor %}
+    </select><br>
+    Quantity: <input type="number" name="qty"><br>
+    <input type="submit" value="Add">
+</form>
+{% endblock %}

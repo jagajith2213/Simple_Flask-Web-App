@@ -1,0 +1,11 @@
+ <link rel="stylesheet" href="{{ url_for('static', filename='Products.css') }}">    
+{% extends "base.html" %}
+{% block title %}Edit Product{% endblock %}
+{% block content %}
+<h1>Edit Product</h1>
+<form method="POST">
+    Product ID: {{ product.product_id }}<br>
+    Name: <input type="text" name="name" value="{{ product.name }}"><br>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

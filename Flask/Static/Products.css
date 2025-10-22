@@ -1,0 +1,19 @@
+/* Products.css - styles for Products.html */
+button{
+    background-color: #0b110b; /* Green */
+   border-radius: 10px;
+    color: white;
+    padding: 6px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #555555; /* Dark grey */
+}
+a{
+    color: white;
+    text-decoration: none;
+}

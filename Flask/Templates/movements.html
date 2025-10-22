@@ -1,0 +1,26 @@
+ <link rel="stylesheet" href="{{ url_for('static', filename='Products.css') }}">
+{% extends "base.html" %}
+{% block title %}Movements{% endblock %}
+{% block content %}
+<h1>Product Movements</h1>
+<button><a href="{{ url_for('add_movement') }}">Add Movement</a></button>
+<table>
+    <tr><th>Movement ID</th><th>Timestamp</th><th>From</th><th>To</th><th>Product</th><th>Qty</th><th>Actions</th></tr>
+    {% for movement in movements %}
+    <tr>
+        <td>{{ movement.movement_id }}</td>
+        <td>{{ movement.timestamp }}</td>
+        <td>{{ movement.from_location or '' }}</td>
+        <td>{{ movement.to_location or '' }}</td>
+        <td>{{ movement.product_id }}</td>
+        <td>{{ movement.qty }}</td>
+                <td class="actions">
+                    <button><a href="{{ url_for('edit_movement', movement_id=movement.movement_id) }}">Edit</a></button>
+                    <form method="POST" action="{{ url_for('delete_movement', movement_id=movement.movement_id) }}" style="display:inline">
+                        <button type="submit" class="btn btn-plain">Delete</button>
+                    </form>
+                </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

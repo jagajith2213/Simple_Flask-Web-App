@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Report{% endblock %}
+{% block content %}
+<h1>Product Balances by Location</h1>
+
+{% if balances_by_location %}
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Qty</th>
+            <th>Last Movement</th>
+        </tr>
+
+        {% for group in balances_by_location %}
+            <tr class="location-header">
+                <td colspan="5"><strong>{{ group['location']['name'] }}</strong></td>
+            </tr>
+
+            {% for item in group['items'] %}
+            <tr>
+                <td></td>
+                <td>{{ item['product'].product_id }}</td>
+                <td>{{ item['product'].name }}</td>
+                <td>{{ item['qty'] }}</td>
+                <td>{{ item['last_movement'].strftime('%Y-%m-%d %H:%M:%S') if item['last_movement'] else 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+
+            <tr class="subtotal">
+                <td colspan="3"><strong>Subtotal for {{ group['location']['name'] }}</strong></td>
+                <td><strong>{{ group['subtotal'] }}</strong></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No balances to display.</p>
+{% endif %}
+
+{% endblock %}

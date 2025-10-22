@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Edit Location{% endblock %}
+{% block content %}
+<h1>Edit Location</h1>
+<form method="POST">
+    Location ID: {{ location.location_id }}<br>
+    Name: <input type="text" name="name" value="{{ location.name }}"><br>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

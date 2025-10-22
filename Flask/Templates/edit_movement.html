@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Edit Movement{% endblock %}
+{% block content %}
+<h1>Edit Product Movement</h1>
+<form method="POST">
+    From Location: <select name="from_location" required>
+        <option value="">Select a location</option>
+        {% for location in locations %}
+        <option value="{{ location.name }}" {% if movement.from_location == location.name %}selected{% endif %}>{{ location.name }}</option>
+        {% endfor %}
+    </select><br>
+    To Location: <select name="to_location" required>
+        <option value="">Select a location</option>
+        {% for location in locations %}
+        <option value="{{ location.name }}" {% if movement.to_location == location.name %}selected{% endif %}>{{ location.name }}</option>
+        {% endfor %}
+    </select><br>
+    Product: <select name="product_id">
+        {% for product in products %}
+        <option value="{{ product.product_id }}" {% if movement.product_id == product.product_id %}selected{% endif %}>{{ product.name }}</option>
+        {% endfor %}
+    </select><br>
+    Quantity: <input type="number" name="qty" value="{{ movement.qty }}"><br>
+    <input type="submit" value="Update">
+</form>
+{% endblock %}
